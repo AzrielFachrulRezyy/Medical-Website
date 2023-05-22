@@ -4,3 +4,4 @@
 <script src="<?= BASE_URL; ?>/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
 <script src="<?= BASE_URL; ?>/assets/libs/simplebar/dist/simplebar.js"></script>
 <script src="<?= BASE_URL; ?>/assets/js/dashboard.js"></script>
+<script src="<?= BASE_URL; ?>/assets/js/doxscien.js"></script>

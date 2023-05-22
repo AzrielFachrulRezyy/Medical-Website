@@ -19,14 +19,14 @@
         else
         {
             setAlert("Perhatian!", "Username atau password yang anda masukkan salah!", "error");
-            header("Location: login.php");
+            header("Location: ".BASE_URL."/admin/login.php");
             exit;
         }
     }
     else
     {
         setAlert("Perhatian!", "Username atau password yang anda masukkan salah!", "error");
-        header("Location: login.php");
+        header("Location: ".BASE_URL."/admin/login.php");
         exit;
     }
 }
@@ -65,11 +65,11 @@ if (isset($_SESSION['id_user'])) {
                 <form method="post">
                   <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username">
+                    <input type="text" class="form-control" id="username" name="username" required>
                   </div>
                   <div class="mb-4">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <input type="password" class="form-control" id="password" name="password" required>
                   </div>
                   <button type="submit" name="btnLogin" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Login</button>
                 </form>

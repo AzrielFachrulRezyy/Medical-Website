@@ -26,7 +26,7 @@
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="<?= BASE_URL; ?>/admin/konsultasi/konsultasi.php" aria-expanded="false">
+          <a class="sidebar-link" href="<?= BASE_URL; ?>/admin/konsultasi/index.php" aria-expanded="false">
             <span>
               <i class="ti ti-message"></i>
             </span>
@@ -38,7 +38,7 @@
           <span class="hide-menu">Data</span>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="<?= BASE_URL; ?>/admin/dokter/dokter.php" aria-expanded="false">
+          <a class="sidebar-link" href="<?= BASE_URL; ?>/admin/dokter/index.php" aria-expanded="false">
             <span>
               <i class="ti ti-stethoscope"></i>
             </span>
@@ -46,19 +46,15 @@
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="<?= BASE_URL; ?>/admin/spesialis/spesialis.php" aria-expanded="false">
+          <a class="sidebar-link" href="<?= BASE_URL; ?>/admin/spesialis/index.php" aria-expanded="false">
             <span>
               <i class="ti ti-tools"></i>
             </span>
             <span class="hide-menu">Spesialis</span>
           </a>
         </li>
-        <li class="nav-small-cap">
-          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-          <span class="hide-menu">Blog</span>
-        </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="<?= BASE_URL; ?>/admin/penyakit/penyakit.php" aria-expanded="false">
+          <a class="sidebar-link" href="<?= BASE_URL; ?>/admin/penyakit/index.php" aria-expanded="false">
             <span>
               <i class="ti ti-virus"></i>
             </span>
@@ -66,7 +62,7 @@
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="<?= BASE_URL; ?>/admin/obat/obat.php" aria-expanded="false">
+          <a class="sidebar-link" href="<?= BASE_URL; ?>/admin/obat/index.php" aria-expanded="false">
             <span>
               <i class="ti ti-vaccine-bottle"></i>
             </span>
@@ -78,7 +74,7 @@
           <span class="hide-menu">Riwayat Aktivitas</span>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="<?= BASE_URL; ?>/admin/riwayat/riwayat.php" aria-expanded="false">
+          <a class="sidebar-link" href="<?= BASE_URL; ?>/admin/riwayat/index.php" aria-expanded="false">
             <span>
               <i class="ti ti-article"></i>
             </span>

@@ -6,6 +6,6 @@
     mysqli_query($koneksi, "INSERT INTO riwayat VALUES ('', 'User Berhasil logout!', '$tgl_riwayat', '$id_user')");
 	
 	session_destroy();
-	header("Location: login.php");
+	header("Location: ".BASE_URL."/admin/login.php");
 	exit;
 ?>

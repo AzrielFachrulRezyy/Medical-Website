@@ -1,13 +1,13 @@
 <?php 
     require_once '../../koneksi.php';
     if (!isset($_SESSION['id_user'])) {
-        header("Location: login.php");
+        header("Location: ".BASE_URL."/admin/login.php");
         exit;
     }
 
     $id_user = $_SESSION['id_user'];
     if (!$dataUser = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'"))) {
-        header("Location: logout.php");
+        header("Location: ".BASE_URL."/admin/logout.php");
         exit;
     }
 
@@ -26,7 +26,7 @@
                     mysqli_query($koneksi, "INSERT INTO riwayat VALUES ('', 'Password berhasil diubah!', '$tgl_riwayat', '$id_user')");
                     
                     setAlert("Berhasil!", "Password berhasil diubah!", "success");
-                    header("Location: profile.php");
+                    header("Location: index.php");
                     exit;
                 }
                 else
@@ -98,15 +98,15 @@
                 <form method="post">
                     <div class="mb-3">
                       <label for="password_lama" class="form-label">Password Lama</label>
-                      <input type="password" class="form-control" id="password_lama" name="password_lama">
+                      <input type="password" class="form-control" id="password_lama" name="password_lama" required>
                     </div>
                     <div class="mb-3">
                       <label for="password_baru" class="form-label">Password Baru</label>
-                      <input type="password" class="form-control" id="password_baru" name="password_baru">
+                      <input type="password" class="form-control" id="password_baru" name="password_baru" required>
                     </div>
                     <div class="mb-3">
                       <label for="verifikasi_password_baru" class="form-label">Verifikasi Password Baru</label>
-                      <input type="password" class="form-control" id="verifikasi_password_baru" name="verifikasi_password_baru">
+                      <input type="password" class="form-control" id="verifikasi_password_baru" name="verifikasi_password_baru" required>
                     </div>
                     <button type="submit" name="btnUbahPassword" class="btn btn-primary">Submit</button>
                 </form>

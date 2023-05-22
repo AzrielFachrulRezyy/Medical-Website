@@ -1,0 +1,19 @@
+.head-left {
+    text-align: left;
+    margin: auto;
+}
+
+.head-right {
+    text-align: right;
+    margin: auto;
+}
+
+@media(max-width: 768px) {
+    .head-left {
+        text-align: center;
+    }
+
+    .head-right {
+        text-align: center;
+    }   
+}

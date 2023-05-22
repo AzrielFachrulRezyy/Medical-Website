@@ -1,13 +1,13 @@
 <?php 
     require_once '../../koneksi.php';
     if (!isset($_SESSION['id_user'])) {
-        header("Location: login.php");
-        exit;
+      header("Location: ".BASE_URL."/admin/login.php");
+      exit;
     }
 
     $id_user = $_SESSION['id_user'];
     if (!$dataUser = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'"))) {
-        header("Location: logout.php");
+        header("Location: ".BASE_URL."/admin/logout.php");
         exit;
     }
 
@@ -21,7 +21,7 @@
 
             setAlert("Berhasil!", "Profile berhasil diubah!", "success");
 
-            header("Location: profile.php");
+            header("Location: index.php");
             exit;
         }
         else
@@ -37,7 +37,7 @@
     }
 
     if (!$dataUser = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'"))) {
-        header("Location: logout.php");
+        header("Location: ".BASE_URL."/admin/logout.php");
         exit;
     }
 ?>
@@ -74,15 +74,15 @@
               <div class="card-body">
                 <h4 class="card-title fw-semibold">Ubah Profile</h4>
                 <form method="post">
-                    <div class="mb-3">
-                      <label for="username" class="form-label">Username</label>
-                      <input type="text" class="form-control" id="username" name="username" value="<?= $dataUser['username']; ?>">
-                    </div>
-                    <div class="mb-3">
-                      <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
-                      <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?= $dataUser['nama_lengkap']; ?>">
-                    </div>
-                    <button type="submit" name="btnUbahProfile" class="btn btn-primary">Submit</button>
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" value="<?= $dataUser['username']; ?>" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
+                    <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?= $dataUser['nama_lengkap']; ?>" required>
+                  </div>
+                  <button type="submit" name="btnUbahProfile" class="btn btn-primary">Submit</button>
                 </form>
               </div>
             </div>
