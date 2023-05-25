@@ -26,7 +26,7 @@
       mysqli_query($koneksi, "INSERT INTO riwayat VALUES ('', 'Spesialis $spesialis Berhasil diubah!', '$tgl_riwayat', '$id_user')");
       
       setAlert("Berhasil!", "Spesialis ".$spesialis." Berhasil diubah!", "success");
-      header("Location: index.php");
+      header("Location: ".BASE_URL."/admin/spesialis/index.php");
       exit;
     }
     else

@@ -6,6 +6,8 @@ if (!isset($_SESSION['id_user'])) {
 	exit;
 }
 
+$id_user = $_SESSION['id_user'];
+
 $id_spesialis = htmlspecialchars($_GET['id_spesialis']);
 $data_spesialis = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM spesialis WHERE id_spesialis = '$id_spesialis'"));
 $spesialis = $data_spesialis['spesialis'];
@@ -13,6 +15,7 @@ $spesialis = $data_spesialis['spesialis'];
 $hapus_spesialis = mysqli_query($koneksi, "DELETE FROM spesialis WHERE id_spesialis = '$id_spesialis'");
 
 if ($hapus_spesialis) {
+	$tgl_riwayat = date('Y-m-d H:i:s');
 	mysqli_query($koneksi, "INSERT INTO riwayat VALUES ('', 'Spesialis $spesialis Berhasil dihapus!', '$tgl_riwayat', '$id_user')");
 
 	setAlert("Berhasil!", "Spesialis $spesialis Berhasil dihapus!", "success");
