@@ -41,7 +41,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.php">
             <span>
               Orthoc
             </span>
@@ -54,22 +54,22 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home </a>
+                <a class="nav-link" href="index.php">Home </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html"> About</a>
+                <a class="nav-link" href="about.php"> About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="penyakit.html">Penyakit</a>
+                <a class="nav-link" href="penyakit.php">Penyakit</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="obat.html">Obat</a>
+                <a class="nav-link" href="obat.php">Obat</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="doctors.html">Dokter</a>
+                <a class="nav-link" href="dokter.php">Dokter</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="contact.html">Contact Us <span class="sr-only">(current)</span> </a>
+                <a class="nav-link" href="contact.php">Contact Us <span class="sr-only">(current)</span> </a>
               </li>
               <form class="form-inline">
                 <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
@@ -195,19 +195,19 @@
               Links
             </h4>
             <div class="footer_links">
-              <a class="active" href="index.html">
+              <a class="active" href="index.php">
                 Home
               </a>
-              <a class="" href="about.html">
+              <a class="" href="about.php">
                 About
               </a>
-              <a class="" href="departments.html">
+              <a class="" href="departments.php">
                 Departments
               </a>
-              <a class="" href="doctors.html">
-                Doctors
+              <a class="" href="dokter.php">
+                dokter
               </a>
-              <a class="" href="contact.html">
+              <a class="" href="contact.php">
                 Contact Us
               </a>
             </div>
