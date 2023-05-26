@@ -11,6 +11,10 @@ $id_user = $_SESSION['id_user'];
 $id_dokter = htmlspecialchars($_GET['id_dokter']);
 $data_dokter = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM dokter WHERE id_dokter = '$id_dokter'"));
 $nama_dokter = $data_dokter['nama_dokter'];
+$foto_dokter = $data_dokter['foto_dokter'];
+
+// hapus foto lama dokter
+unlink($_SERVER['DOCUMENT_ROOT'].'/doxscien/assets/images/dokter/'.$foto_dokter);
 
 $hapus_dokter = mysqli_query($koneksi, "DELETE FROM dokter WHERE id_dokter = '$id_dokter'");
 

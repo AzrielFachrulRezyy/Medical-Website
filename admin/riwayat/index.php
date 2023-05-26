@@ -8,7 +8,7 @@
 
   $id_user = $_SESSION['id_user'];
   
-  $penyakit = mysqli_query($koneksi, "SELECT * FROM penyakit ORDER BY nama_penyakit ASC");
+  $riwayat = mysqli_query($koneksi, "SELECT * FROM riwayat INNER JOIN user ON riwayat.id_user = user.id_user ORDER BY tanggal_riwayat DESC");
 
   if (!$dataUser = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'"))) {
       header("Location: ".BASE_URL."/admin/logout.php");
@@ -21,7 +21,7 @@
 <html lang="en">
 <head>
   <?php include_once '../include/head.php'; ?>
-  <title>Penyakit</title>
+  <title>Riwayat</title>
 </head>
 
 <body>
@@ -44,14 +44,7 @@
         <div class="container-fluid">
           <div class="card">
             <div class="card-body">
-              <div class="row mb-3">
-                <div class="col-md-6 head-left">
-                  <h5 class="card-title fw-semibold">Penyakit</h5>
-                </div>
-                <div class="col-md-6 head-right">
-                  <a href="<?= BASE_URL; ?>/admin/penyakit/tambah_penyakit.php" class="btn btn-primary">Tambah Penyakit</a>
-                </div>
-              </div>
+              <h5 class="card-title fw-semibold">Riwayat</h5>
               <div class="card">
                 <div class="card-body">
                   <div class="table-responsive">
@@ -59,22 +52,19 @@
                       <thead>
                         <tr>
                           <th>No.</th>
-                          <th>Nama Penyakit</th>
-                          <th>Deskripsi Penyakit</th>
-                          <th>Aksi</th>
+                          <th>Isi Riwayat</th>
+                          <th>Tanggal Riwayat</th>
+                          <th>Username</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php $i = 1; ?>
-                        <?php foreach ($penyakit as $data_penyakit): ?>
+                        <?php foreach ($riwayat as $data_riwayat): ?>
                           <tr>
                             <td><?= $i++; ?>.</td>
-                            <td><?= $data_penyakit['nama_penyakit']; ?></td>
-                            <td><?= htmlspecialchars_decode($data_penyakit['deskripsi_penyakit']); ?></td>
-                            <td>
-                              <a href="ubah_penyakit.php?id_penyakit=<?= $data_penyakit['id_penyakit']; ?>" class="m-1 btn btn-sm btn-success">Ubah</a>
-                              <a data-nama="Penyakit <?= $data_penyakit['nama_penyakit']; ?> akan terhapus!" href="hapus_penyakit.php?id_penyakit=<?= $data_penyakit['id_penyakit']; ?>" class="btn-delete m-1 btn btn-sm btn-danger">Hapus</a>
-                            </td>
+                            <td><?= $data_riwayat['isi_riwayat']; ?></td>
+                            <td><?= date("d-m-Y, H:i", strtotime($data_riwayat['tanggal_riwayat'])); ?></td>
+                            <td><?= $data_riwayat['username']; ?></td>
                           </tr>
                         <?php endforeach ?>
                       </tbody>

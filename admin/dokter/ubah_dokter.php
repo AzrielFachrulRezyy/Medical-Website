@@ -74,9 +74,9 @@
     {
       setAlert("Perhatian!", "Dokter ".$nama_dokter." Gagal diubah!", "error");
       echo "
-          <script>
-              window.history.back();
-          </script>
+        <script>
+          window.history.back();
+        </script>
       ";
       exit;
     }

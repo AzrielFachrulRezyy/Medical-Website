@@ -67,7 +67,7 @@
                         <?php $i = 1; ?>
                         <?php foreach ($spesialis as $data_spesialis): ?>
                           <tr>
-                            <td><?= $i++; ?></td>
+                            <td><?= $i++; ?>.</td>
                             <td><?= $data_spesialis['spesialis']; ?></td>
                             <td>
                               <a href="ubah_spesialis.php?id_spesialis=<?= $data_spesialis['id_spesialis']; ?>" class="m-1 btn btn-sm btn-success">Ubah</a>

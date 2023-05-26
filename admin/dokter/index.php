@@ -70,7 +70,7 @@
                         <?php $i = 1; ?>
                         <?php foreach ($dokter as $data_dokter): ?>
                           <tr>
-                            <td><?= $i++; ?></td>
+                            <td><?= $i++; ?>.</td>
                             <td><?= $data_dokter['nama_dokter']; ?></td>
                             <td><?= htmlspecialchars_decode($data_dokter['jadwal_praktek']); ?></td>
                             <td class="max-width-100">

@@ -1,3 +1,8 @@
+// Call the dataTables jQuery plugin
+$(document).ready(function() {
+  $('#dataTable').DataTable();
+});
+
 $(document).ready(function() {
 	$('.btn-delete').on('click', function(e){
 		e.preventDefault();
