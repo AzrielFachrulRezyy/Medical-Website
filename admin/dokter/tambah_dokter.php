@@ -61,7 +61,7 @@
 
     if ($insert_dokter) {
       $tgl_riwayat = date('Y-m-d H:i:s');
-      mysqli_query($koneksi, "INSERT INTO riwayat VALUES ('', 'Dokter $nama_dokter Berhasil diubah!', '$tgl_riwayat', '$id_user')");
+      mysqli_query($koneksi, "INSERT INTO riwayat VALUES ('', 'Dokter $nama_dokter Berhasil ditambahkan!', '$tgl_riwayat', '$id_user')");
       
       setAlert("Berhasil!", "Dokter ".$nama_dokter." Berhasil ditambahkan!", "success");
       header("Location: ".BASE_URL."/admin/dokter/index.php");

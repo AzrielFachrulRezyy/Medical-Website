@@ -8,7 +8,7 @@
 
   $id_user = $_SESSION['id_user'];
   
-  $spesialis = mysqli_query($koneksi, "SELECT * FROM spesialis ORDER BY spesialis ASC");
+  $penyakit = mysqli_query($koneksi, "SELECT * FROM penyakit ORDER BY nama_penyakit ASC");
 
   if (!$dataUser = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'"))) {
       header("Location: ".BASE_URL."/admin/logout.php");
@@ -16,25 +16,26 @@
   }
 
   if (isset($_POST['btnTambah'])) {
-    $spesialis = htmlspecialchars(trim($_POST['spesialis']));
+    $nama_penyakit = htmlspecialchars(trim($_POST['nama_penyakit']));
+    $deskripsi_penyakit = htmlspecialchars(trim($_POST['content']));
+    
+    $insert_penyakit = mysqli_query($koneksi, "INSERT INTO penyakit (nama_penyakit, deskripsi_penyakit) VALUES ('$nama_penyakit', '$deskripsi_penyakit')");
 
-    $insert_spesialis = mysqli_query($koneksi, "INSERT INTO spesialis (spesialis) VALUES ('$spesialis')");
-
-    if ($insert_spesialis) {
+    if ($insert_penyakit) {
       $tgl_riwayat = date('Y-m-d H:i:s');
-      mysqli_query($koneksi, "INSERT INTO riwayat VALUES ('', 'Spesialis $spesialis Berhasil ditambahkan!', '$tgl_riwayat', '$id_user')");
+      mysqli_query($koneksi, "INSERT INTO riwayat VALUES ('', 'Penyakit $nama_penyakit Berhasil ditambahkan!', '$tgl_riwayat', '$id_user')");
       
-      setAlert("Berhasil!", "Spesialis ".$spesialis." Berhasil ditambahkan!", "success");
-      header("Location: ".BASE_URL."/admin/spesialis/index.php");
+      setAlert("Berhasil!", "Penyakit ".$nama_penyakit." Berhasil ditambahkan!", "success");
+      header("Location: ".BASE_URL."/admin/penyakit/index.php");
       exit;
     }
     else
     {
-      setAlert("Perhatian!", "Spesialis ".$spesialis." Gagal ditambahkan!", "error");
+      setAlert("Perhatian!", "Penyakit ".$nama_penyakit." Gagal ditambahkan!", "error");
       echo "
-          <script>
-              window.history.back();
-          </script>
+        <script>
+          window.history.back();
+        </script>
       ";
       exit;
     }
@@ -46,7 +47,7 @@
 <html lang="en">
 <head>
   <?php include_once '../include/head.php'; ?>
-  <title>Tambah Spesialis</title>
+  <title>Tambah Penyakit</title>
 </head>
 
 <body>
@@ -71,15 +72,20 @@
             <div class="card-body">
               <div class="row mb-3">
                 <div class="col head-left">
-                  <h5 class="card-title fw-semibold">Tambah Spesialis</h5>
+                  <h5 class="card-title fw-semibold">Tambah Penyakit</h5>
                 </div>
               </div>
               <div class="card">
                 <div class="card-body">
                   <form method="post">
                     <div class="mb-3">
-                      <label for="spesialis" class="form-label">Spesialis</label>
-                      <input type="text" class="form-control" id="spesialis" name="spesialis" required>
+                      <label for="nama_penyakit" class="form-label">Nama Penyakit</label>
+                      <input type="text" class="form-control" id="nama_penyakit" name="nama_penyakit" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="editor" class="form-label">Deskripsi Penyakit</label>
+                      <input type="hidden" name="content">
+                      <div id="editor"></div>
                     </div>
                     <button type="submit" name="btnTambah" class="btn btn-primary">Submit</button>
                   </form>
