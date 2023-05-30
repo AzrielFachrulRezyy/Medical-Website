@@ -25,6 +25,28 @@ $(document).ready(function() {
 		  }
 		});
 	});
+
+	$('.btn-alert').on('click', function(e){
+		e.preventDefault();
+
+		const href = $(this).attr('href');
+		const nama 	= $(this).data('nama');
+
+		Swal.fire({
+		  title: 'Apakah Anda yakin?',
+		  text: nama,
+		  icon: 'warning',
+		  showCancelButton: true,
+		  cancelButtonColor: '#3085d6',
+		  confirmButtonColor: '#ffc107',
+		  confirmButtonText: 'Konfirmasi',
+		  cancelButtonText: 'Batal'
+		}).then((result) => {
+		  if (result.value) {
+		    document.location.href = href;
+		  }
+		});
+	});
 });
 
 var quill = new Quill('#editor', {

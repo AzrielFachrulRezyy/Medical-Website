@@ -16,6 +16,7 @@
   if (isset($_POST['btnTambah'])) {
     $nama_pasien = htmlspecialchars(trim($_POST['nama_pasien']));
     $no_wa_pasien = htmlspecialchars($_POST['no_wa_pasien']);
+    $jenis_kelamin = htmlspecialchars($_POST['jenis_kelamin']);
     if (substr($no_wa_pasien, 0, 2) == "08") { // check if it starts with "08"
       $no_wa_pasien = "62" . substr($no_wa_pasien, 1);
     }
@@ -25,7 +26,7 @@
     $tanggal_daftar = date("Y-m-d H:i");
     $status_konsultasi = 'BELUM DITANGGAPI';
 
-    $insert_konsultasi = mysqli_query($koneksi, "INSERT INTO konsultasi (nama_pasien, no_wa_pasien, alamat_pasien, gejala_pasien, tanggal_daftar, status_konsultasi) VALUES ('$nama_pasien', '$no_wa_pasien', '$alamat_pasien', '$gejala_pasien', '$tanggal_daftar', '$status_konsultasi')");
+    $insert_konsultasi = mysqli_query($koneksi, "INSERT INTO konsultasi (nama_pasien, jenis_kelamin, no_wa_pasien, alamat_pasien, gejala_pasien, tanggal_daftar, status_konsultasi) VALUES ('$nama_pasien', '$jenis_kelamin', '$no_wa_pasien', '$alamat_pasien', '$gejala_pasien', '$tanggal_daftar', '$status_konsultasi')");
 
     if ($insert_konsultasi) {
       $tgl_riwayat = date('Y-m-d H:i:s');
@@ -87,6 +88,23 @@
                     <div class="mb-3">
                       <label for="nama_pasien" class="form-label">Nama Pasien</label>
                       <input type="text" class="form-control" id="nama_pasien" name="nama_pasien" required>
+                    </div>
+                    <div class="mb-3">
+                      <div class="row">
+                        <div class="col">
+                          <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <input type="radio" id="l" name="jenis_kelamin" value="L">
+                          <label for="l" class="form-label ms-2">Laki-laki</label>
+                        </div>
+                        <div class="col">
+                          <input type="radio" id="p" name="jenis_kelamin" value="P">
+                          <label for="p" class="form-label ms-2">Perempuan</label>
+                        </div>
+                      </div>
                     </div>
                     <div class="mb-3">
                       <label for="no_wa_pasien" class="form-label">No. WhatsApp Pasien</label>

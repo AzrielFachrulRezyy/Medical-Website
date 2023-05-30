@@ -8,7 +8,6 @@
 
   $id_user = $_SESSION['id_user'];
   
-
   if (!$dataUser = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'"))) {
       header("Location: ".BASE_URL."/admin/logout.php");
       exit;
@@ -18,7 +17,15 @@
 
   $data_konsultasi = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM konsultasi WHERE id_konsultasi = '$id_konsultasi'"));
 
-  $data_tanggapan = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM tanggapan WHERE id_konsultasi = '$id_konsultasi'"));
+  if (!$data_konsultasi) {
+    header("Location: ".BASE_URL."/admin/konsultasi/index.php");
+  }
+
+  $data_tanggapan = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM tanggapan 
+    INNER JOIN konsultasi ON tanggapan.id_konsultasi = konsultasi.id_konsultasi 
+    INNER JOIN dokter ON dokter.id_dokter = tanggapan.id_dokter 
+    INNER JOIN spesialis ON dokter.id_spesialis = spesialis.id_spesialis 
+    WHERE tanggapan.id_konsultasi = '$id_konsultasi'"));
 
   $konsultasi = mysqli_query($koneksi, "SELECT * FROM konsultasi ORDER BY tanggal_daftar ASC");
 ?>
@@ -67,6 +74,19 @@
                   <hr>
                   <h5>Tanggapan</h5>
                   <?php if ($data_tanggapan): ?>
+                    <div class="card">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><h6>Nama Dokter:</h6> <?= $data_tanggapan['nama_dokter']; ?> (<?= $data_tanggapan['spesialis']; ?>)</li>
+                        <li class="list-group-item"><h6>Tanggal Konsultasi:</h6> <?= date("d-m-Y, H:i", strtotime($data_tanggapan['tanggal_konsultasi'])); ?></li>
+                        <li class="list-group-item"><h6>Keterangan:</h6> <?= $data_tanggapan['keterangan']; ?></li>
+                      </ul>
+                    </div>
+                    <?php if ($data_konsultasi['status_konsultasi'] == 'SUDAH DITANGGAPI'): ?>
+                      <a href="ubah_tanggapan.php?id_tanggapan=<?= $data_tanggapan['id_tanggapan']; ?>" class="btn btn-success">Ubah Tanggapan</a>
+                      <div>Konfirmasi Tanggapan ke Pasien? <a target="_blank" href="tanggapan_konfirmasi.php?id_konsultasi=<?= $id_konsultasi; ?>" class="btn btn-warning" onclick="reloadPageAfter5Sec()">Konfirmasi</a></div>
+                    <?php elseif ($data_konsultasi['status_konsultasi'] == 'SUDAH DIKONFIRMASI'): ?>
+                      <div>Ubah status menjadi selesai? <a href="tanggapan_selesai.php?id_konsultasi=<?= $id_konsultasi; ?>" class="btn btn-primary">Selesai</a></div>
+                    <?php endif ?>
                   <?php else: ?>
                     <h5 class="text-muted">Belum ditanggapi</h5>
                     <a href="tambah_tanggapan.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="btn btn-primary">Tanggapi</a>
@@ -83,5 +103,13 @@
   <?php 
     include_once '../include/script.php';
   ?>
+
+  <script>
+    function reloadPageAfter5Sec() {
+      setTimeout(function() {
+        location.reload();
+      }, 5000); // 5000 milliseconds = 5 seconds
+    }
+  </script>
 </body>
 </html>
