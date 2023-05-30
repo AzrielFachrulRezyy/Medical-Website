@@ -80,7 +80,7 @@
                             <td><?= date("d-m-Y H:i", strtotime($data_konsultasi['tanggal_daftar'])); ?></td>
                             <td><?= $data_konsultasi['status_konsultasi']; ?></td>
                             <td>
-                              <a href="tanggapan_konsultasi.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="m-1 btn btn-sm btn-primary">Tanggapi</a>
+                              <a href="<?= BASE_URL; ?>/admin/tanggapan/index.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="m-1 btn btn-sm btn-primary">Tanggapi</a>
                               <a href="ubah_konsultasi.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="m-1 btn btn-sm btn-success">Ubah</a>
                               <a data-nama="Pasien <?= $data_konsultasi['nama_pasien']; ?> akan terhapus!" href="hapus_konsultasi.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="btn-delete m-1 btn btn-sm btn-danger">Hapus</a>
                             </td>
