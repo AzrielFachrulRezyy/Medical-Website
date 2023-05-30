@@ -76,7 +76,7 @@
 <html lang="en">
 <head>
   <?php include_once '../include/head.php'; ?>
-  <title>Ubah Obat</title>
+  <title>Ubah Obat - <?= $data_obat['nama_obat']; ?></title>
 </head>
 
 <body>

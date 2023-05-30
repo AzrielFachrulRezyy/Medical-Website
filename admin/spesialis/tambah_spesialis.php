@@ -8,7 +8,6 @@
 
   $id_user = $_SESSION['id_user'];
   
-  $spesialis = mysqli_query($koneksi, "SELECT * FROM spesialis ORDER BY spesialis ASC");
 
   if (!$dataUser = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'"))) {
       header("Location: ".BASE_URL."/admin/logout.php");

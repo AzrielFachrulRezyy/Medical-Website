@@ -48,7 +48,7 @@
 <html lang="en">
 <head>
   <?php include_once '../include/head.php'; ?>
-  <title>Ubah Penyakit</title>
+  <title>Ubah Penyakit - <?= $data_penyakit['nama_penyakit']; ?></title>
 </head>
 
 <body>

@@ -47,7 +47,7 @@
 <html lang="en">
 <head>
   <?php include_once '../include/head.php'; ?>
-  <title>Ubah Spesialis</title>
+  <title>Ubah Spesialis - <?= $data_spesialis['spesialis']; ?></title>
 </head>
 
 <body>
@@ -72,7 +72,7 @@
             <div class="card-body">
               <div class="row mb-3">
                 <div class="col head-left">
-                  <h5 class="card-title fw-semibold">Ubah Spesialis</h5>
+                  <h5 class="card-title fw-semibold">Ubah Spesialis - <?= $data_spesialis['spesialis']; ?></h5>
                 </div>
               </div>
               <div class="card">
