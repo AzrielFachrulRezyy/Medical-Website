@@ -1,7 +1,8 @@
 <?php 
   require_once 'koneksi.php';
   $penyakit = mysqli_query($koneksi, "SELECT * FROM penyakit ORDER BY nama_penyakit ASC");
- ?>
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -32,6 +33,9 @@
           <h2>
             Info Penyakit
           </h2>
+          <p>
+           Berikut adalah informasi mengenai penyakit-penyakit secara umum, semoga dapat membantu anda untuk menemukan penyakit yang tepat.
+          </p>
         </div>
         <div class="row">
           <?php foreach ($penyakit as $data_penyakit): ?>
@@ -45,9 +49,9 @@
                     <?= $data_penyakit['nama_penyakit']; ?>
                   </h5>
                   <p>
-                    <?= htmlspecialchars_decode(html_entity_decode($data_penyakit['deskripsi_penyakit'])); ?>
+                    <?= strip_tags(html_entity_decode($data_penyakit['deskripsi_penyakit'])); ?>
                   </p>
-                  <a href="" class="btn btn-success text-white">Read More</a>
+                  <a href="detail_penyakit.php?id_penyakit=<?= $data_penyakit['id_penyakit']; ?>" class="btn btn-success text-white">Read More</a>
                 </div>
               </div>
             </div>
