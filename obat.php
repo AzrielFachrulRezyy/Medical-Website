@@ -14,11 +14,6 @@
 <body class="sub_page">
 
   <div class="hero_area">
-
-    <div class="hero_bg_box">
-      <img src="images/hero-bg.png" alt="">
-    </div>
-
     <!-- header section strats -->
     <?php include_once 'include/header.php'; ?>
     <!-- end header section -->

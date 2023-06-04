@@ -52,33 +52,29 @@
                   <a href="<?= BASE_URL; ?>/admin/spesialis/tambah_spesialis.php" class="btn btn-primary">Tambah Spesialis</a>
                 </div>
               </div>
-              <div class="card">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
-                        <tr>
-                          <th>No.</th>
-                          <th>Spesialis</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($spesialis as $data_spesialis): ?>
-                          <tr>
-                            <td><?= $i++; ?>.</td>
-                            <td><?= $data_spesialis['spesialis']; ?></td>
-                            <td>
-                              <a href="ubah_spesialis.php?id_spesialis=<?= $data_spesialis['id_spesialis']; ?>" class="m-1 btn btn-sm btn-success">Ubah</a>
-                              <a data-nama="Spesialis <?= $data_spesialis['spesialis']; ?> akan terhapus!" href="hapus_spesialis.php?id_spesialis=<?= $data_spesialis['id_spesialis']; ?>" class="btn-delete m-1 btn btn-sm btn-danger">Hapus</a>
-                            </td>
-                          </tr>
-                        <?php endforeach ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Spesialis</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($spesialis as $data_spesialis): ?>
+                      <tr>
+                        <td><?= $i++; ?>.</td>
+                        <td><?= $data_spesialis['spesialis']; ?></td>
+                        <td>
+                          <a href="ubah_spesialis.php?id_spesialis=<?= $data_spesialis['id_spesialis']; ?>" class="m-1 btn btn-sm btn-success">Ubah</a>
+                          <a data-nama="Spesialis <?= $data_spesialis['spesialis']; ?> akan terhapus!" href="hapus_spesialis.php?id_spesialis=<?= $data_spesialis['id_spesialis']; ?>" class="btn-delete m-1 btn btn-sm btn-danger">Hapus</a>
+                        </td>
+                      </tr>
+                    <?php endforeach ?>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

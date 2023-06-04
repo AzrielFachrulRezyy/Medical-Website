@@ -52,43 +52,39 @@
                   <a href="<?= BASE_URL; ?>/admin/dokter/tambah_dokter.php" class="btn btn-primary">Tambah Dokter</a>
                 </div>
               </div>
-              <div class="card">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
-                        <tr>
-                          <th>No.</th>
-                          <th>Nama Dokter</th>
-                          <th>Jadwal Praktek</th>
-                          <th>Foto Dokter</th>
-                          <th>Spesialis</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($dokter as $data_dokter): ?>
-                          <tr>
-                            <td><?= $i++; ?>.</td>
-                            <td><?= $data_dokter['nama_dokter']; ?></td>
-                            <td><?= htmlspecialchars_decode($data_dokter['jadwal_praktek']); ?></td>
-                            <td class="max-width-100">
-                              <a target="_blank" href="<?= BASE_URL; ?>/assets/images/dokter/<?= $data_dokter['foto_dokter']; ?>">
-                                <img class="img-fluid" src="<?= BASE_URL; ?>/assets/images/dokter/<?= $data_dokter['foto_dokter']; ?>" alt="<?= $data_dokter['foto_dokter']; ?>">
-                              </a>
-                            </td>
-                            <td><?= $data_dokter['spesialis']; ?></td>
-                            <td>
-                              <a href="ubah_dokter.php?id_dokter=<?= $data_dokter['id_dokter']; ?>" class="m-1 btn btn-sm btn-success">Ubah</a>
-                              <a data-nama="Dokter <?= $data_dokter['nama_dokter']; ?> akan terhapus!" href="hapus_dokter.php?id_dokter=<?= $data_dokter['id_dokter']; ?>" class="btn-delete m-1 btn btn-sm btn-danger">Hapus</a>
-                            </td>
-                          </tr>
-                        <?php endforeach ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Nama Dokter</th>
+                      <th>Jadwal Praktek</th>
+                      <th>Foto Dokter</th>
+                      <th>Spesialis</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($dokter as $data_dokter): ?>
+                      <tr>
+                        <td><?= $i++; ?>.</td>
+                        <td><?= $data_dokter['nama_dokter']; ?></td>
+                        <td><?= htmlspecialchars_decode($data_dokter['jadwal_praktek']); ?></td>
+                        <td class="max-width-100">
+                          <a target="_blank" href="<?= BASE_URL; ?>/assets/images/dokter/<?= $data_dokter['foto_dokter']; ?>">
+                            <img class="img-fluid" src="<?= BASE_URL; ?>/assets/images/dokter/<?= $data_dokter['foto_dokter']; ?>" alt="<?= $data_dokter['foto_dokter']; ?>">
+                          </a>
+                        </td>
+                        <td><?= $data_dokter['spesialis']; ?></td>
+                        <td>
+                          <a href="ubah_dokter.php?id_dokter=<?= $data_dokter['id_dokter']; ?>" class="m-1 btn btn-sm btn-success">Ubah</a>
+                          <a data-nama="Dokter <?= $data_dokter['nama_dokter']; ?> akan terhapus!" href="hapus_dokter.php?id_dokter=<?= $data_dokter['id_dokter']; ?>" class="btn-delete m-1 btn btn-sm btn-danger">Hapus</a>
+                        </td>
+                      </tr>
+                    <?php endforeach ?>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

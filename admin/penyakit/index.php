@@ -52,35 +52,31 @@
                   <a href="<?= BASE_URL; ?>/admin/penyakit/tambah_penyakit.php" class="btn btn-primary">Tambah Penyakit</a>
                 </div>
               </div>
-              <div class="card">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
-                        <tr>
-                          <th>No.</th>
-                          <th>Nama Penyakit</th>
-                          <th>Deskripsi Penyakit</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($penyakit as $data_penyakit): ?>
-                          <tr>
-                            <td><?= $i++; ?>.</td>
-                            <td><?= $data_penyakit['nama_penyakit']; ?></td>
-                            <td><?= htmlspecialchars_decode($data_penyakit['deskripsi_penyakit']); ?></td>
-                            <td>
-                              <a href="ubah_penyakit.php?id_penyakit=<?= $data_penyakit['id_penyakit']; ?>" class="m-1 btn btn-sm btn-success">Ubah</a>
-                              <a data-nama="Penyakit <?= $data_penyakit['nama_penyakit']; ?> akan terhapus!" href="hapus_penyakit.php?id_penyakit=<?= $data_penyakit['id_penyakit']; ?>" class="btn-delete m-1 btn btn-sm btn-danger">Hapus</a>
-                            </td>
-                          </tr>
-                        <?php endforeach ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Nama Penyakit</th>
+                      <th>Deskripsi Penyakit</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($penyakit as $data_penyakit): ?>
+                      <tr>
+                        <td><?= $i++; ?>.</td>
+                        <td><?= $data_penyakit['nama_penyakit']; ?></td>
+                        <td><?= htmlspecialchars_decode($data_penyakit['deskripsi_penyakit']); ?></td>
+                        <td>
+                          <a href="ubah_penyakit.php?id_penyakit=<?= $data_penyakit['id_penyakit']; ?>" class="m-1 btn btn-sm btn-success">Ubah</a>
+                          <a data-nama="Penyakit <?= $data_penyakit['nama_penyakit']; ?> akan terhapus!" href="hapus_penyakit.php?id_penyakit=<?= $data_penyakit['id_penyakit']; ?>" class="btn-delete m-1 btn btn-sm btn-danger">Hapus</a>
+                        </td>
+                      </tr>
+                    <?php endforeach ?>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

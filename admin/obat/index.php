@@ -52,41 +52,37 @@
                   <a href="<?= BASE_URL; ?>/admin/obat/tambah_obat.php" class="btn btn-primary">Tambah Obat</a>
                 </div>
               </div>
-              <div class="card">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
-                        <tr>
-                          <th>No.</th>
-                          <th>Nama Obat</th>
-                          <th>Deskripsi Obat</th>
-                          <th>Foto Obat</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($obat as $data_obat): ?>
-                          <tr>
-                            <td><?= $i++; ?>.</td>
-                            <td><?= $data_obat['nama_obat']; ?></td>
-                            <td><?= strip_tags(html_entity_decode((strlen($data_obat['deskripsi_obat']) > 50) ? substr($data_obat['deskripsi_obat'], 0, 50) . '...' : $data_obat['deskripsi_obat'])); ?></td>
-                            <td class="max-width-100">
-                              <a target="_blank" href="<?= BASE_URL; ?>/assets/images/obat/<?= $data_obat['foto_obat']; ?>">
-                                <img class="img-fluid" src="<?= BASE_URL; ?>/assets/images/obat/<?= $data_obat['foto_obat']; ?>" alt="<?= $data_obat['foto_obat']; ?>">
-                              </a>
-                            </td>
-                            <td>
-                              <a href="ubah_obat.php?id_obat=<?= $data_obat['id_obat']; ?>" class="m-1 btn btn-sm btn-success">Ubah</a>
-                              <a data-nama="Obat <?= $data_obat['nama_obat']; ?> akan terhapus!" href="hapus_obat.php?id_obat=<?= $data_obat['id_obat']; ?>" class="btn-delete m-1 btn btn-sm btn-danger">Hapus</a>
-                            </td>
-                          </tr>
-                        <?php endforeach ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Nama Obat</th>
+                      <th>Deskripsi Obat</th>
+                      <th>Foto Obat</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($obat as $data_obat): ?>
+                      <tr>
+                        <td><?= $i++; ?>.</td>
+                        <td><?= $data_obat['nama_obat']; ?></td>
+                        <td><?= strip_tags(html_entity_decode((strlen($data_obat['deskripsi_obat']) > 50) ? substr($data_obat['deskripsi_obat'], 0, 50) . '...' : $data_obat['deskripsi_obat'])); ?></td>
+                        <td class="max-width-100">
+                          <a target="_blank" href="<?= BASE_URL; ?>/assets/images/obat/<?= $data_obat['foto_obat']; ?>">
+                            <img class="img-fluid" src="<?= BASE_URL; ?>/assets/images/obat/<?= $data_obat['foto_obat']; ?>" alt="<?= $data_obat['foto_obat']; ?>">
+                          </a>
+                        </td>
+                        <td>
+                          <a href="ubah_obat.php?id_obat=<?= $data_obat['id_obat']; ?>" class="m-1 btn btn-sm btn-success">Ubah</a>
+                          <a data-nama="Obat <?= $data_obat['nama_obat']; ?> akan terhapus!" href="hapus_obat.php?id_obat=<?= $data_obat['id_obat']; ?>" class="btn-delete m-1 btn btn-sm btn-danger">Hapus</a>
+                        </td>
+                      </tr>
+                    <?php endforeach ?>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

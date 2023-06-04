@@ -1,9 +1,13 @@
+<?php 
+  require_once 'koneksi.php';
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
-  <?php include_once 'include/head.php'; ?>
   <title>About</title>
+  <?php include_once 'include/head.php'; ?>
 </head>
 
 <body class="sub_page">
@@ -15,7 +19,6 @@
   </div>
 
   <!-- about section -->
-
   <section class="about_section layout_padding">
     <div class="container  ">
       <div class="row">

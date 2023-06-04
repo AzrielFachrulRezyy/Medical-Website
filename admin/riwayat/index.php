@@ -45,32 +45,28 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title fw-semibold">Riwayat</h5>
-              <div class="card">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
-                        <tr>
-                          <th>No.</th>
-                          <th>Isi Riwayat</th>
-                          <th>Tanggal Riwayat</th>
-                          <th>Username</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($riwayat as $data_riwayat): ?>
-                          <tr>
-                            <td><?= $i++; ?>.</td>
-                            <td><?= $data_riwayat['isi_riwayat']; ?></td>
-                            <td><?= date("d-m-Y, H:i", strtotime($data_riwayat['tanggal_riwayat'])); ?></td>
-                            <td><?= $data_riwayat['username']; ?></td>
-                          </tr>
-                        <?php endforeach ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Isi Riwayat</th>
+                      <th>Tanggal Riwayat</th>
+                      <th>Username</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($riwayat as $data_riwayat): ?>
+                      <tr>
+                        <td><?= $i++; ?>.</td>
+                        <td><?= $data_riwayat['isi_riwayat']; ?></td>
+                        <td><?= date("d-m-Y, H:i", strtotime($data_riwayat['tanggal_riwayat'])); ?></td>
+                        <td><?= $data_riwayat['username']; ?></td>
+                      </tr>
+                    <?php endforeach ?>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
