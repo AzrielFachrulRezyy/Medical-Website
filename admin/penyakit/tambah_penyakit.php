@@ -8,6 +8,8 @@
 
   $id_user = $_SESSION['id_user'];
   
+  $obat = mysqli_query($koneksi, "SELECT * FROM obat ORDER BY nama_obat ASC");
+
   if (!$dataUser = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'"))) {
       header("Location: ".BASE_URL."/admin/logout.php");
       exit;
@@ -16,8 +18,9 @@
   if (isset($_POST['btnTambah'])) {
     $nama_penyakit = htmlspecialchars(trim($_POST['nama_penyakit']));
     $deskripsi_penyakit = htmlspecialchars(trim($_POST['content']));
+    $id_obat = htmlspecialchars($_POST['id_obat']);
     
-    $insert_penyakit = mysqli_query($koneksi, "INSERT INTO penyakit (nama_penyakit, deskripsi_penyakit) VALUES ('$nama_penyakit', '$deskripsi_penyakit')");
+    $insert_penyakit = mysqli_query($koneksi, "INSERT INTO penyakit (nama_penyakit, deskripsi_penyakit, id_obat) VALUES ('$nama_penyakit', '$deskripsi_penyakit', '$id_obat')");
 
     if ($insert_penyakit) {
       $tgl_riwayat = date('Y-m-d H:i:s');
@@ -84,6 +87,15 @@
                       <label for="editor" class="form-label">Deskripsi Penyakit</label>
                       <input type="hidden" name="content">
                       <div id="editor"></div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="id_obat">Rekomendasi Obat</label>
+                      <select name="id_obat" id="id_obat" class="form-select">
+                        <option value="0">--- Pilih Obat ---</option>
+                        <?php foreach ($obat as $data_obat): ?>
+                          <option value="<?= $data_obat['id_obat']; ?>"><?= $data_obat['nama_obat']; ?></option>
+                        <?php endforeach ?>
+                      </select>
                     </div>
                     <button type="submit" name="btnTambah" class="btn btn-primary">Submit</button>
                   </form>

@@ -2,14 +2,15 @@
   require_once '../../koneksi.php';
 
   if (!isset($_SESSION['id_user'])) {
-      header("Location: ".BASE_URL."/admin/login.php");
-      exit;
+    header("Location: ".BASE_URL."/admin/login.php");
+    exit;
   }
 
   $id_user = $_SESSION['id_user'];
   
   $id_penyakit = $_GET['id_penyakit'];
-  $data_penyakit = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM penyakit WHERE id_penyakit = '$id_penyakit'"));
+  $data_penyakit = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM penyakit INNER JOIN obat ON penyakit.id_obat = obat.id_obat WHERE id_penyakit = '$id_penyakit'"));
+  $obat = mysqli_query($koneksi, "SELECT * FROM obat ORDER BY nama_obat ASC");
 
   if (!$dataUser = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'"))) {
     header("Location: ".BASE_URL."/admin/logout.php");
@@ -19,8 +20,9 @@
   if (isset($_POST['btnUbah'])) {
     $nama_penyakit = htmlspecialchars(trim($_POST['nama_penyakit']));
     $deskripsi_penyakit = htmlspecialchars(trim($_POST['content']));
+    $id_obat = htmlspecialchars(trim($_POST['id_obat']));
 
-    $update_penyakit = mysqli_query($koneksi, "UPDATE penyakit SET nama_penyakit = '$nama_penyakit', deskripsi_penyakit = '$deskripsi_penyakit' WHERE id_penyakit = '$id_penyakit'");
+    $update_penyakit = mysqli_query($koneksi, "UPDATE penyakit SET nama_penyakit = '$nama_penyakit', deskripsi_penyakit = '$deskripsi_penyakit', id_obat = '$id_obat' WHERE id_penyakit = '$id_penyakit'");
 
     if ($update_penyakit) {
       $tgl_riwayat = date('Y-m-d H:i:s');
@@ -87,6 +89,17 @@
                       <label for="editor" class="form-label">Deskripsi Penyakit</label>
                       <input type="hidden" name="content" value="<?= htmlspecialchars_decode($data_penyakit['deskripsi_penyakit']); ?>">
                       <div id="editor"><?= htmlspecialchars_decode($data_penyakit['deskripsi_penyakit']); ?></div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="id_obat">Rekomendasi Obat</label>
+                      <select name="id_obat" id="id_obat" class="form-select">
+                        <option value="<?= $data_penyakit['id_obat']; ?>"><?= $data_penyakit['nama_obat']; ?></option>
+                        <?php foreach ($obat as $data_obat): ?>
+                          <?php if ($data_obat['id_obat'] != $data_penyakit['id_obat']): ?>
+                            <option value="<?= $data_obat['id_obat']; ?>"><?= $data_obat['nama_obat']; ?></option>
+                          <?php endif ?>
+                        <?php endforeach ?>
+                      </select>
                     </div>
                     <button type="submit" name="btnUbah" class="btn btn-primary">Submit</button>
                   </form>

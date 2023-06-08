@@ -8,7 +8,7 @@
 
   $id_user = $_SESSION['id_user'];
   
-  $penyakit = mysqli_query($koneksi, "SELECT * FROM penyakit ORDER BY nama_penyakit ASC");
+  $penyakit = mysqli_query($koneksi, "SELECT * FROM penyakit INNER JOIN obat ON penyakit.id_obat = obat.id_obat ORDER BY nama_penyakit ASC");
 
   if (!$dataUser = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'"))) {
       header("Location: ".BASE_URL."/admin/logout.php");
@@ -59,6 +59,7 @@
                       <th>No.</th>
                       <th>Nama Penyakit</th>
                       <th>Deskripsi Penyakit</th>
+                      <th>Rekomendasi Obat</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -69,6 +70,7 @@
                         <td><?= $i++; ?>.</td>
                         <td><?= $data_penyakit['nama_penyakit']; ?></td>
                         <td><?= htmlspecialchars_decode($data_penyakit['deskripsi_penyakit']); ?></td>
+                        <td><?= $data_penyakit['nama_obat']; ?></td>
                         <td>
                           <a href="ubah_penyakit.php?id_penyakit=<?= $data_penyakit['id_penyakit']; ?>" class="m-1 btn btn-sm btn-success">Ubah</a>
                           <a data-nama="Penyakit <?= $data_penyakit['nama_penyakit']; ?> akan terhapus!" href="hapus_penyakit.php?id_penyakit=<?= $data_penyakit['id_penyakit']; ?>" class="btn-delete m-1 btn btn-sm btn-danger">Hapus</a>

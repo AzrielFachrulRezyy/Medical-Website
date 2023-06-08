@@ -71,7 +71,7 @@
     $tanggal_konsultasi_keterangan = date("d-m-Y, H:i", strtotime($tanggal_konsultasi));
     $keterangan = $selamat . $jenis_kelamin . $nama_pasien . ", kami dari Doxscien. " . $jenis_kelamin . "telah kami jadwalkan konsultasi dengan dokter " . $nama_dokter . " pada waktu berikut: " . $tanggal_konsultasi_keterangan;
 
-    $insert_tanggapan = mysqli_query($koneksi, "INSERT INTO tanggapan (id_konsultasi, id_dokter, tanggal_konsultasi, keterangan) VALUES ('$id_konsultasi', '$id_dokter', '$tanggal_konsultasi', '$keterangan')");
+    $insert_tanggapan = mysqli_query($koneksi, "INSERT INTO tanggapan (id_konsultasi, id_dokter, tanggal_konsultasi, keterangan, id_user) VALUES ('$id_konsultasi', '$id_dokter', '$tanggal_konsultasi', '$keterangan', '$id_user')");
 
     if ($insert_tanggapan) {
       // update status konsultasi
