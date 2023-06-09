@@ -3,7 +3,7 @@
 
   $id_penyakit = $_GET['id_penyakit'];
 
-  $data_penyakit = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM penyakit WHERE id_penyakit = '$id_penyakit'"));
+  $data_penyakit = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM penyakit INNER JOIN obat ON penyakit.id_obat = obat.id_obat WHERE id_penyakit = '$id_penyakit'"));
 ?>
 
 <!DOCTYPE html>
@@ -33,12 +33,23 @@
     <div class="department_container">
       <div class="container">
         <div class="card shadow mb-5" style="border-radius: 8px;">
-            <div class="card-body">
-              <h1 class="text-center"><?= $data_penyakit['nama_penyakit']; ?></h1>
-              <?= htmlspecialchars_decode($data_penyakit['deskripsi_penyakit']); ?>
-            </div>
+          <div class="card-body">
+            <h1 class="text-center"><?= $data_penyakit['nama_penyakit']; ?></h1>
+            <?= htmlspecialchars_decode($data_penyakit['deskripsi_penyakit']); ?>
+          </div>
         </div>
-    </div>
+        <div class="row">
+          <div class="col">
+            <div class="card shadow mb-5" style="border-radius: 8px;">
+              <div class="card-body">
+                <img src="assets/images/obat/<?= $data_penyakit['foto_obat']; ?>" alt="<?= $data_obat['foto_obat']; ?>" width="400px" style="display: block; margin: auto; margin-bottom: 10px;">
+                <h1 class="text-center">Rekomendasi Obat: <?= $data_penyakit['nama_obat']; ?></h1>
+                <?= htmlspecialchars_decode($data_penyakit['deskripsi_obat']); ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

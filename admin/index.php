@@ -13,6 +13,14 @@
       exit;
   }
 
+  $konsultasi = mysqli_query($koneksi, "SELECT * FROM konsultasi WHERE DATE(tanggal_daftar) = CURDATE() ORDER BY status_konsultasi = 'BELUM DITANGGAPI' DESC");
+
+  $jumlah_konsultasi_hari_ini = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT *, count(id_konsultasi) AS jumlah FROM konsultasi WHERE DATE(tanggal_daftar) = CURDATE()"))['jumlah'];
+
+  $jumlah_konsultasi_hari_ini_sudah_ditanggapi = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT *, count(id_konsultasi) AS jumlah FROM konsultasi WHERE DATE(tanggal_daftar) = CURDATE() AND status_konsultasi = 'SUDAH DITANGGAPI'"))['jumlah'];
+  
+  $jumlah_konsultasi_hari_ini_belum_ditanggapi = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT *, count(id_konsultasi) AS jumlah FROM konsultasi WHERE DATE(tanggal_daftar) = CURDATE() AND status_konsultasi = 'BELUM DITANGGAPI'"))['jumlah'];
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -45,95 +53,93 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-8 d-flex align-items-strech">
-            <div class="card w-100">
-              <div class="card-body">
-                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
-                  <div class="mb-3 mb-sm-0">
-                    <h5 class="card-title fw-semibold">Sales Overview</h5>
-                  </div>
-                  <div>
-                    <select class="form-select">
-                      <option value="1">March 2023</option>
-                      <option value="2">April 2023</option>
-                      <option value="3">May 2023</option>
-                      <option value="4">June 2023</option>
-                    </select>
+          <div class="col-lg-4">
+            <div class="card overflow-hidden">
+              <div class="card-body p-4">
+                <h5 class="card-title mb-9 fw-semibold">Jumlah Konsultasi Hari Ini:</h5>
+                <div class="row align-items-center">
+                  <div class="col-8">
+                    <h4 class="fw-semibold mb-3"><?= $jumlah_konsultasi_hari_ini; ?></h4>
                   </div>
                 </div>
-                <div id="chart"></div>
               </div>
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="row">
-              <div class="col-lg-12">
-                <!-- Yearly Breakup -->
-                <div class="card overflow-hidden">
-                  <div class="card-body p-4">
-                    <h5 class="card-title mb-9 fw-semibold">Yearly Breakup</h5>
-                    <div class="row align-items-center">
-                      <div class="col-8">
-                        <h4 class="fw-semibold mb-3">$36,358</h4>
-                        <div class="d-flex align-items-center mb-3">
-                          <span
-                            class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-arrow-up-left text-success"></i>
-                          </span>
-                          <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                          <p class="fs-3 mb-0">last year</p>
-                        </div>
-                        <div class="d-flex align-items-center">
-                          <div class="me-4">
-                            <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">2023</span>
-                          </div>
-                          <div>
-                            <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">2023</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="d-flex justify-content-center">
-                          <div id="breakup"></div>
-                        </div>
-                      </div>
-                    </div>
+            <div class="card overflow-hidden">
+              <div class="card-body p-4">
+                <h5 class="card-title mb-9 fw-semibold">Belum Ditanggapi Hari Ini:</h5>
+                <div class="row align-items-center">
+                  <div class="col-8">
+                    <h4 class="fw-semibold mb-3"><?= $jumlah_konsultasi_hari_ini_belum_ditanggapi; ?></h4>
                   </div>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <!-- Monthly Earnings -->
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row alig n-items-start">
-                      <div class="col-8">
-                        <h5 class="card-title mb-9 fw-semibold"> Monthly Earnings </h5>
-                        <h4 class="fw-semibold mb-3">$6,820</h4>
-                        <div class="d-flex align-items-center pb-1">
-                          <span
-                            class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-arrow-down-right text-danger"></i>
-                          </span>
-                          <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                          <p class="fs-3 mb-0">last year</p>
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="d-flex justify-content-end">
-                          <div
-                            class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-currency-dollar fs-6"></i>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="earning"></div>
                 </div>
               </div>
             </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card overflow-hidden">
+              <div class="card-body p-4">
+                <h5 class="card-title mb-9 fw-semibold">Sudah Ditanggapi Hari Ini:</h5>
+                <div class="row align-items-center">
+                  <div class="col-8">
+                    <h4 class="fw-semibold mb-3"><?= $jumlah_konsultasi_hari_ini_sudah_ditanggapi; ?></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row mb-3">
+          <div class="col-md-6 head-left">
+            <h5 class="card-title fw-semibold">Konsultasi Hari Ini:</h5>
+          </div>
+          <div class="col-md-6 head-right">
+            <a href="<?= BASE_URL; ?>/admin/konsultasi/tambah_konsultasi.php" class="btn btn-primary">Tambah Konsultasi</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Nama Pasien</th>
+                      <th>No. WhatsApp Pasien</th>
+                      <th>Alamat Pasien</th>
+                      <th>Gejala Pasien</th>
+                      <th>Tanggal Daftar</th>
+                      <th>Status Konsultasi</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($konsultasi as $data_konsultasi): ?>
+                      <tr>
+                        <td><?= $i++; ?>.</td>
+                        <td><?= $data_konsultasi['nama_pasien']; ?></td>
+                        <td><a class="btn btn-success" target="_blank" href="https://wa.me/<?= $data_konsultasi['no_wa_pasien']; ?>"><i class="ti ti-brand-whatsapp"></i>+<?= $data_konsultasi['no_wa_pasien']; ?></a></td>
+                        <td><?= $data_konsultasi['alamat_pasien']; ?></td>
+                        <td><?= $data_konsultasi['gejala_pasien']; ?></td>
+                        <td><?= date("d-m-Y H:i", strtotime($data_konsultasi['tanggal_daftar'])); ?></td>
+                        <td><?= $data_konsultasi['status_konsultasi']; ?></td>
+                        <td>
+                          <?php if ($data_konsultasi['status_konsultasi'] == 'BELUM DITANGGAPI'): ?>
+                            <a href="<?= BASE_URL; ?>/admin/tanggapan/index.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="m-1 btn btn-sm btn-primary">Tanggapi</a>
+                          <?php else: ?>
+                            <a href="<?= BASE_URL; ?>/admin/tanggapan/index.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="m-1 btn btn-sm btn-primary">Tanggapan</a>
+                          <?php endif ?>
+                          <a href="ubah_konsultasi.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="m-1 btn btn-sm btn-success">Ubah</a>
+                          <a data-nama="Pasien <?= $data_konsultasi['nama_pasien']; ?> akan terhapus!" href="hapus_konsultasi.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="btn-delete m-1 btn btn-sm btn-danger">Hapus</a>
+                        </td>
+                      </tr>
+                    <?php endforeach ?>
+                  </tbody>
+                </table>
+              </div>
           </div>
         </div>
         <?php include_once 'include/footer.php'; ?>

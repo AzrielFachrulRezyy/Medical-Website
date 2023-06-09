@@ -33,7 +33,7 @@
           Berikut adalah informasi mengenai dokter-dokteran secara umum, semoga dapat membantu anda untuk menemukan dokter yang tepat.
         </p>
       </div>
-      <div class="row">
+      <div class="row justify-content-center">
         <?php foreach ($dokter as $data_dokter): ?>
           <div class="col-sm-6 col-lg-4 mx-auto">
             <div class="box">
