@@ -1,39 +1,35 @@
-<?php 
-  require_once '../koneksi.php';
-  
-  if (isset($_POST['btnLogin'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+<?php
+require_once '../koneksi.php';
 
-    $data = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username'");
-    if ($dataUser = mysqli_fetch_assoc($data)) {
-        if (password_verify($password, $dataUser['password'])) {
-            $id_user = $dataUser['id_user'];
-            $tgl_riwayat = date('Y-m-d H:i:s');
-            mysqli_query($koneksi, "INSERT INTO riwayat VALUES ('', 'User Berhasil login!', '$tgl_riwayat', '$id_user')");
-            $_SESSION['id_user'] = $id_user;
-            $_SESSION['username'] = $dataUser['username'];
-            header("Location: index.php");
-            exit;
-        }
-        else
-        {
-            setAlert("Perhatian!", "Username atau password yang anda masukkan salah!", "error");
-            header("Location: ".BASE_URL."/admin/login.php");
-            exit;
-        }
+if (isset($_POST['btnLogin'])) {
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+
+  $data = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username'");
+  if ($dataUser = mysqli_fetch_assoc($data)) {
+    if (password_verify($password, $dataUser['password'])) {
+      $id_user = $dataUser['id_user'];
+      $tgl_riwayat = date('Y-m-d H:i:s');
+      mysqli_query($koneksi, "INSERT INTO riwayat VALUES ('', 'User Berhasil login!', '$tgl_riwayat', '$id_user')");
+      $_SESSION['id_user'] = $id_user;
+      $_SESSION['username'] = $dataUser['username'];
+      header("Location: index.php");
+      exit;
+    } else {
+      setAlert("Perhatian!", "Username atau password yang anda masukkan salah!", "error");
+      header("Location: " . BASE_URL . "/admin/login.php");
+      exit;
     }
-    else
-    {
-        setAlert("Perhatian!", "Username atau password yang anda masukkan salah!", "error");
-        header("Location: ".BASE_URL."/admin/login.php");
-        exit;
-    }
+  } else {
+    setAlert("Perhatian!", "Username atau password yang anda masukkan salah!", "error");
+    header("Location: " . BASE_URL . "/admin/login.php");
+    exit;
+  }
 }
 
 if (isset($_SESSION['id_user'])) {
-    header("Location: index.php");
-    exit;
+  header("Location: index.php");
+  exit;
 }
 
 ?>
@@ -48,10 +44,8 @@ if (isset($_SESSION['id_user'])) {
 
 <body>
   <!--  Body Wrapper -->
-  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-    data-sidebar-position="fixed" data-header-position="fixed">
-    <div
-      class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+    <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
       <div class="d-flex align-items-center justify-content-center w-100">
         <div class="row justify-content-center w-100">
           <div class="col-md-8 col-lg-6 col-xxl-3">
@@ -59,8 +53,7 @@ if (isset($_SESSION['id_user'])) {
               <div class="card-body">
                 <div class="text-nowrap logo-img text-center d-block py-3 w-100">
                   <h1>Login</h1>
-                  <h2>Doxscien</h2>
-                  <img src="../assets/images/favicon.png" width="75" alt="">
+                  <img src="../assets/images/logo-green.png" width="200" alt="">
                 </div>
                 <form method="post">
                   <div class="mb-3">
@@ -74,7 +67,7 @@ if (isset($_SESSION['id_user'])) {
                   <button type="submit" name="btnLogin" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Login</button>
                 </form>
               </div>
-                <a href="../index.php" class="text-center mx-auto pb-5">Kembali</a>
+              <a href="../index.php" class="text-center mx-auto pb-5">Kembali</a>
             </div>
           </div>
         </div>
