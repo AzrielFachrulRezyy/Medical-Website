@@ -58,9 +58,9 @@ if (isset($_SESSION['id_user'])) {
             <div class="card mb-0">
               <div class="card-body">
                 <div class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <!-- <img src="../assets/images/logos/dark-logo.svg" width="180" alt=""> -->
                   <h1>Login</h1>
                   <h2>Doxscien</h2>
+                  <img src="../assets/images/favicon.png" width="75" alt="">
                 </div>
                 <form method="post">
                   <div class="mb-3">

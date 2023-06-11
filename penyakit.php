@@ -43,7 +43,8 @@
                     <?= $data_penyakit['nama_penyakit']; ?>
                   </h5>
                   <p>
-                    <?= strip_tags(html_entity_decode($data_penyakit['deskripsi_penyakit'])); ?>
+                    <?php $deskripsi_penyakit = strip_tags(html_entity_decode($data_penyakit['deskripsi_penyakit'])); ?>
+                    <?= strlen($deskripsi_penyakit) > 100 ? substr($deskripsi_penyakit, 0, 100) . "..." : $deskripsi_penyakit; ?>
                   </p>
                   <a href="detail_penyakit.php?id_penyakit=<?= $data_penyakit['id_penyakit']; ?>" class="btn btn-success text-white">Read More</a>
                 </div>
