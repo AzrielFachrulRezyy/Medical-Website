@@ -6,6 +6,7 @@
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
       <div class="navbar-nav">
+        <a class="nav-link active" href="profile.php">Profile</a>
         <a class="nav-link active" href="konsultasi.php">Buat Konsultasi</a>
       </div>
       <div class="navbar-nav">
