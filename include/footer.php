@@ -16,13 +16,13 @@
             <a href="">
               <i class="fa fa-phone" aria-hidden="true"></i>
               <span>
-                Call +01 1234567890
+                Call +62 897-9223-650
               </span>
             </a>
             <a href="">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <span>
-                demo@gmail.com
+                doxscien@gmail.com
               </span>
             </a>
           </div>
@@ -47,12 +47,12 @@
           <h4>
             About
           </h4>
-          <p>
-            Beatae provident nobis mollitia magnam voluptatum, unde dicta facilis minima veniam corporis laudantium alias tenetur eveniet illum reprehenderit fugit a delectus officiis blanditiis ea.
+          <p class="text-justify">
+            Doxscien adalah platform yang menyediakan informasi penyakit, rekomendasi obat, informasi dokter, dan layanan konsultasi online.
           </p>
         </div>
       </div>
-      <div class="col-md-6 col-lg-2 mx-auto footer_col">
+      <div class="col-md-6 col-lg-4 mx-auto footer_col">
         <div class="footer_link_box">
           <h4>
             Links
@@ -64,35 +64,25 @@
             <a class="" href="about.php">
               About
             </a>
-            <a class="" href="departments.php">
-              Departments
+            <a class="" href="penyakit.php">
+              Penyakit
+            </a>
+            <a class="" href="obat.php">
+              Obat
             </a>
             <a class="" href="dokter.php">
               dokter
             </a>
-            <a class="" href="contact.php">
-              Contact Us
+            <a class="" href="konsultasi.php">
+              Konsultasi
             </a>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3 footer_col ">
-        <h4>
-          Newsletter
-        </h4>
-     <form action="#">
-          <input type="email" placeholder="Enter email" />
-          <button type="submit">
-            Subscribe
-          </button>
-        </form>
-      </div>
     </div>
-    <div class="footer-info">
+    <div class="footer-info text-center">
       <p>
-        &copy; <span id="displayYear"></span> All Rights Reserved By Kelompok 2 Universitas Pamulang
+        &copy; <span id="displayYear"></span> All Rights Reserved By Doxscien
       </p>
-     
-    </div>  
-  </div>
+    </div>
 </footer>

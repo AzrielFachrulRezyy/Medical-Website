@@ -1,5 +1,5 @@
-<?php 
-  require_once 'koneksi.php';
+<?php
+require_once 'koneksi.php';
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +24,7 @@
       <div class="row">
         <div class="col-md-6 ">
           <div class="img-box">
-            <img src="assets/images/about-img.jpg" alt="">
+            <img src="assets/images/Rumah-sakit.jpg" alt="">
           </div>
         </div>
         <div class="col-md-6">
@@ -35,10 +35,8 @@
               </h2>
             </div>
             <p class="text-justify">
-              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-              in some form, by injected humour, or randomised words which don't look even slightly believable. If you
-              are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in
-              the middle of text. All
+              Selamat datang di Doxscien! <br>
+              Doxscien adalah platform yang menyediakan informasi penyakit, rekomendasi obat, informasi dokter, dan layanan konsultasi online. Kami berkomitmen untuk menyediakan informasi medis yang akurat dan terpercaya, serta memberikan akses yang mudah dan praktis bagi pengguna. Visi kami adalah meningkatkan kesehatan dan kualitas hidup setiap individu dengan menyediakan sumber daya medis yang handal. Terima kasih telah memilih Doxscien sebagai sumber informasi medis Anda.
             </p>
           </div>
         </div>
@@ -56,4 +54,4 @@
 
 </body>
 
-</html> 
+</html>

@@ -1,9 +1,9 @@
-<?php 
-  require_once 'koneksi.php';
+<?php
+require_once 'koneksi.php';
 
-  $id_penyakit = $_GET['id_penyakit'];
+$id_penyakit = $_GET['id_penyakit'];
 
-  $data_penyakit = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM penyakit INNER JOIN obat ON penyakit.id_obat = obat.id_obat WHERE id_penyakit = '$id_penyakit'"));
+$data_penyakit = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM penyakit INNER JOIN obat ON penyakit.id_obat = obat.id_obat WHERE id_penyakit = '$id_penyakit'"));
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +36,7 @@
           <div class="card-body">
             <h1 class="text-center"><?= $data_penyakit['nama_penyakit']; ?></h1>
             <?= htmlspecialchars_decode($data_penyakit['deskripsi_penyakit']); ?>
+            <a href="penyakit.php" class="btn btn-success text-white">Back</a>
           </div>
         </div>
         <div class="row">
@@ -45,6 +46,7 @@
                 <img src="assets/images/obat/<?= $data_penyakit['foto_obat']; ?>" alt="<?= $data_obat['foto_obat']; ?>" width="400px" style="display: block; margin: auto; margin-bottom: 10px;">
                 <h1 class="text-center">Rekomendasi Obat: <?= $data_penyakit['nama_obat']; ?></h1>
                 <?= htmlspecialchars_decode($data_penyakit['deskripsi_obat']); ?>
+                <a href="obat.php" class="btn btn-success text-white">Kunjungi Obat</a>
               </div>
             </div>
           </div>

@@ -1,11 +1,11 @@
-<?php 
-  require_once 'koneksi.php';
+<?php
+require_once 'koneksi.php';
 
-  $penyakit = mysqli_query($koneksi, "SELECT * FROM penyakit ORDER BY nama_penyakit ASC LIMIT 5");
+$penyakit = mysqli_query($koneksi, "SELECT * FROM penyakit ORDER BY nama_penyakit ASC LIMIT 5");
 
-  $obat = mysqli_query($koneksi, "SELECT * FROM obat ORDER BY nama_obat ASC LIMIT 5");
-  
-  $dokter = mysqli_query($koneksi, "SELECT * FROM dokter INNER JOIN spesialis ON dokter.id_spesialis = spesialis.id_spesialis ORDER BY nama_dokter ASC LIMIT 5");
+$obat = mysqli_query($koneksi, "SELECT * FROM obat ORDER BY nama_obat ASC LIMIT 5");
+
+$dokter = mysqli_query($koneksi, "SELECT * FROM dokter INNER JOIN spesialis ON dokter.id_spesialis = spesialis.id_spesialis ORDER BY nama_dokter ASC LIMIT 5");
 
 
 ?>
@@ -39,10 +39,10 @@
                 <div class="col-md-7">
                   <div class="detail-box">
                     <h1>
-                      We Provide Best Healthcare
+                      We provide health information services
                     </h1>
                     <p>
-                      Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
+                      Kami menyediakan layanan informasi penyakit dan obat serta menyediakan informasi dokter dan pendaftaran konsultasi online.
                     </p>
                     <div class="btn-box">
                       <a href="" class="btn1">
@@ -60,10 +60,10 @@
                 <div class="col-md-7">
                   <div class="detail-box">
                     <h1>
-                      We Provide Best Healthcare
+                      We provide health information services
                     </h1>
                     <p>
-                      Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
+                      Kami menyediakan layanan informasi penyakit dan obat serta menyediakan informasi dokter dan pendaftaran konsultasi online.
                     </p>
                     <div class="btn-box">
                       <a href="" class="btn1">
@@ -81,10 +81,10 @@
                 <div class="col-md-7">
                   <div class="detail-box">
                     <h1>
-                      We Provide Best Healthcare
+                      We provide health information services
                     </h1>
                     <p>
-                      Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
+                      Kami menyediakan layanan informasi penyakit dan obat serta menyediakan informasi dokter dan pendaftaran konsultasi online.
                     </p>
                     <div class="btn-box">
                       <a href="" class="btn1">
@@ -123,7 +123,7 @@
           </p>
         </div>
         <div class="row justify-content-center">
-          <?php foreach ($penyakit as $data_penyakit): ?>
+          <?php foreach ($penyakit as $data_penyakit) : ?>
             <div class="col-md-3">
               <div class="box ">
                 <div class="img-box">
@@ -135,7 +135,7 @@
                   </h5>
                   <p>
                     <?php $deskripsi_penyakit = strip_tags(html_entity_decode($data_penyakit['deskripsi_penyakit'])); ?>
-                      <?= strlen($deskripsi_penyakit) > 100 ? substr($deskripsi_penyakit, 0, 100) . "..." : $deskripsi_penyakit; ?>
+                    <?= strlen($deskripsi_penyakit) > 100 ? substr($deskripsi_penyakit, 0, 100) . "..." : $deskripsi_penyakit; ?>
                   </p>
                 </div>
               </div>
@@ -153,49 +153,49 @@
 
   <!-- end department section -->
 
-    <!-- department section -->
+  <!-- department section -->
 
-    <section class="department_section layout_padding">
-      <div class="department_container">
-        <div class="container ">
-          <div class="heading_container heading_center">
-            <h2>
-              Info Obat
-            </h2>
-            <p>
-              Berikut adalah informasi mengenai obat-obatan secara umum, semoga dapat membantu anda untuk menemukan obat yang tepat.
-            </p>
-          </div>
-          <div class="row justify-content-center">
-            <?php foreach ($obat as $data_obat): ?>
-              <div class="col-md-3">
-                <div class="box ">
-                  <div class="img-box">
-                    <img src="assets/images/s1.png" alt="">
-                  </div>
-                  <div class="detail-box">
-                    <h5>
-                      <?= $data_obat['nama_obat']; ?>
-                    </h5>
-                    <p>
-                      <?php $deskripsi_obat = strip_tags(html_entity_decode($data_obat['deskripsi_obat'])); ?>
-                      <?= strlen($deskripsi_obat) > 100 ? substr($deskripsi_obat, 0, 100) . "..." : $deskripsi_obat; ?>
-                    </p>
-                  </div>
+  <section class="department_section layout_padding">
+    <div class="department_container">
+      <div class="container ">
+        <div class="heading_container heading_center">
+          <h2>
+            Info Obat
+          </h2>
+          <p>
+            Berikut adalah informasi mengenai obat-obatan secara umum, semoga dapat membantu anda untuk menemukan obat yang tepat.
+          </p>
+        </div>
+        <div class="row justify-content-center">
+          <?php foreach ($obat as $data_obat) : ?>
+            <div class="col-md-3">
+              <div class="box ">
+                <div class="img-box">
+                  <img src="assets/images/s1.png" alt="">
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    <?= $data_obat['nama_obat']; ?>
+                  </h5>
+                  <p>
+                    <?php $deskripsi_obat = strip_tags(html_entity_decode($data_obat['deskripsi_obat'])); ?>
+                    <?= strlen($deskripsi_obat) > 100 ? substr($deskripsi_obat, 0, 100) . "..." : $deskripsi_obat; ?>
+                  </p>
                 </div>
               </div>
-            <?php endforeach ?>
-          </div>
-          <div class="btn-box">
-            <a href="obat.php">
-              View All
-            </a>
-          </div>
+            </div>
+          <?php endforeach ?>
+        </div>
+        <div class="btn-box">
+          <a href="obat.php">
+            View All
+          </a>
         </div>
       </div>
-    </section>
-  
-    <!-- end department section -->
+    </div>
+  </section>
+
+  <!-- end department section -->
 
   <!-- about section -->
 
@@ -204,7 +204,7 @@
       <div class="row">
         <div class="col-md-6 ">
           <div class="img-box">
-            <img src="assets/images/about-img.jpg" alt="">
+            <img src="assets/images/Rumah-sakit.jpg" alt="">
           </div>
         </div>
         <div class="col-md-6">
@@ -215,10 +215,7 @@
               </h2>
             </div>
             <p class="text-justify">
-              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-              in some form, by injected humour, or randomised words which don't look even slightly believable. If you
-              are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in
-              the middle of text. All
+              Doxscien adalah platform yang menyediakan informasi penyakit, rekomendasi obat, informasi dokter, dan layanan konsultasi online. Kami berkomitmen untuk menyediakan informasi medis yang akurat dan terpercaya, serta memberikan akses yang mudah dan praktis bagi pengguna. Visi kami adalah meningkatkan kesehatan dan kualitas hidup setiap individu dengan menyediakan sumber daya medis yang handal. Terima kasih telah memilih Doxscien sebagai sumber informasi medis Anda.
             </p>
             <a href="about.php">
               Read More
@@ -244,7 +241,7 @@
         </p>
       </div>
       <div class="row justify-content-center">
-        <?php foreach ($dokter as $data_dokter): ?>
+        <?php foreach ($dokter as $data_dokter) : ?>
           <div class="col-sm-6 col-lg-4 mx-auto">
             <div class="box">
               <div style="height: 300px;">
