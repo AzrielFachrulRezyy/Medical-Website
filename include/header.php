@@ -26,9 +26,18 @@
           <li class="nav-item">
             <a class="nav-link" href="dokter.php">Dokter</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="konsultasi.php">Konsultasi</a>
-          </li>
+          <?php if (isset($_SESSION['id_user'])): ?>
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard.php">Dashboard</a>
+            </li>
+          <?php else: ?>
+            <li class="nav-item">
+              <a class="nav-link" href="login.php">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="registrasi.php">Registrasi</a>
+            </li>
+          <?php endif ?>
           <!-- <form class="form-inline">
             <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
               <i class="fa fa-search" aria-hidden="true"></i>
