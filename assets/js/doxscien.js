@@ -38,7 +38,7 @@ $(document).ready(function() {
 		  icon: 'warning',
 		  showCancelButton: true,
 		  cancelButtonColor: '#3085d6',
-		  confirmButtonColor: '#ffc107',
+		  confirmButtonColor: '#d33',
 		  confirmButtonText: 'Konfirmasi',
 		  cancelButtonText: 'Batal'
 		}).then((result) => {

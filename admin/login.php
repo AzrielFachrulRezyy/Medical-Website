@@ -11,6 +11,7 @@ if (isset($_POST['btnLogin'])) {
       $id_user = $dataUser['id_user'];
       $tgl_riwayat = date('Y-m-d H:i:s');
       mysqli_query($koneksi, "INSERT INTO riwayat VALUES ('', 'User Berhasil login!', '$tgl_riwayat', '$id_user')");
+      $_SESSION['role'] = $dataUser['role'];
       $_SESSION['id_user'] = $id_user;
       $_SESSION['username'] = $dataUser['username'];
       header("Location: index.php");

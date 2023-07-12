@@ -13,6 +13,11 @@
     exit;
   }
 
+  if ($dataUser['role'] != 'pasien') {
+    header("Location: admin/index.php");
+    exit;
+  }
+
   $konsultasi = mysqli_query($koneksi, "SELECT * FROM konsultasi INNER JOIN user ON konsultasi.id_user = user.id_user WHERE user.id_user = '$id_user' ORDER BY status_konsultasi = 'BELUM DITANGGAPI' DESC");
 ?>
 <!doctype html>
@@ -34,9 +39,12 @@
       <!--  Header End -->
       <div class="container mt-5 py-5">
         <!--  Row 1 -->
-        <div class="row">
-          <div class="col">
-              <h2>Dashboard  - <?= $dataUser['username']; ?></h2>
+        <div class="row mb-3">
+          <div class="col-md-6 head-left">
+            <h2>Dashboard - <?= $dataUser['username']; ?></h2>
+          </div>
+          <div class="col-md-6 head-right">
+            <a href="konsultasi.php" class="btn btn-primary"><i class="fa fa-plus"></i> Buat Konsultasi</a>
           </div>
         </div>
         <div class="row">
@@ -49,6 +57,7 @@
                     <th>Gejala</th>
                     <th>Tanggal Daftar</th>
                     <th>Status Konsultasi</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -58,14 +67,16 @@
                       <tr>
                         <td><?= $i++; ?>.</td>
                         <td><?= $data_konsultasi['gejala_pasien']; ?></td>
-                        <td><?= date("d-m-Y H:i", strtotime($data_konsultasi['tanggal_daftar'])); ?></td>
+                        <td><?= date("d-m-Y, H:i", strtotime($data_konsultasi['tanggal_daftar'])); ?></td>
                         <td><?= $data_konsultasi['status_konsultasi']; ?></td>
+                        <td>
+                          <?php if ($data_konsultasi['status_konsultasi'] == 'BELUM DITANGGAPI'): ?>
+                            <a href="ubah_konsultasi.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="btn btn-success m-1">Ubah</a>
+                            <a data-nama="Ingin membatalkan konsultasi?" href="batalkan_konsultasi.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="btn btn-danger m-1 btn-alert">Batalkan</a>
+                          <?php endif ?>
+                        </td>
                       </tr>
                     <?php endforeach ?>
-                  <?php else: ?>
-                    <tr>
-                      <th colspan="5"><h4 class="text-center">Belum ada konsultasi</h4></th>
-                    </tr>
                   <?php endif ?>
                 </tbody>
               </table>

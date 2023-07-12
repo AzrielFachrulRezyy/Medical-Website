@@ -8,7 +8,7 @@
 
   $id_user = $_SESSION['id_user'];
   
-  $konsultasi = mysqli_query($koneksi, "SELECT * FROM konsultasi ORDER BY status_konsultasi = 'BELUM DITANGGAPI' DESC");
+  $konsultasi = mysqli_query($koneksi, "SELECT * FROM konsultasi INNER JOIN user ON konsultasi.id_user = user.id_user ORDER BY status_konsultasi = 'BELUM DITANGGAPI' DESC");
 
   if (!$dataUser = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'"))) {
       header("Location: ".BASE_URL."/admin/logout.php");
@@ -71,9 +71,9 @@
                     <?php foreach ($konsultasi as $data_konsultasi): ?>
                       <tr>
                         <td><?= $i++; ?>.</td>
-                        <td><?= $data_konsultasi['nama_pasien']; ?></td>
-                        <td><a class="btn btn-success" target="_blank" href="https://wa.me/<?= $data_konsultasi['no_wa_pasien']; ?>"><i class="ti ti-brand-whatsapp"></i>+<?= $data_konsultasi['no_wa_pasien']; ?></a></td>
-                        <td><?= $data_konsultasi['alamat_pasien']; ?></td>
+                        <td><?= $data_konsultasi['nama_lengkap']; ?></td>
+                        <td><a class="btn btn-success" target="_blank" href="https://wa.me/<?= $data_konsultasi['no_whatsapp']; ?>"><i class="ti ti-brand-whatsapp"></i>+<?= $data_konsultasi['no_whatsapp']; ?></a></td>
+                        <td><?= $data_konsultasi['alamat']; ?></td>
                         <td><?= $data_konsultasi['gejala_pasien']; ?></td>
                         <td><?= date("d-m-Y H:i", strtotime($data_konsultasi['tanggal_daftar'])); ?></td>
                         <td><?= $data_konsultasi['status_konsultasi']; ?></td>
@@ -84,7 +84,7 @@
                             <a href="<?= BASE_URL; ?>/admin/tanggapan/index.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="m-1 btn btn-sm btn-primary">Tanggapan</a>
                           <?php endif ?>
                           <a href="ubah_konsultasi.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="m-1 btn btn-sm btn-success">Ubah</a>
-                          <a data-nama="Pasien <?= $data_konsultasi['nama_pasien']; ?> akan terhapus!" href="hapus_konsultasi.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="btn-delete m-1 btn btn-sm btn-danger">Hapus</a>
+                          <a data-nama="Pasien <?= $data_konsultasi['nama_lengkap']; ?> akan terhapus!" href="hapus_konsultasi.php?id_konsultasi=<?= $data_konsultasi['id_konsultasi']; ?>" class="btn-delete m-1 btn btn-sm btn-danger">Hapus</a>
                         </td>
                       </tr>
                     <?php endforeach ?>

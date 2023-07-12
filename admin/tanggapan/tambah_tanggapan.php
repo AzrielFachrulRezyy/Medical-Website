@@ -15,7 +15,7 @@
 
   $id_konsultasi = $_GET['id_konsultasi'];
 
-  $data_konsultasi = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM konsultasi WHERE id_konsultasi = '$id_konsultasi'"));
+  $data_konsultasi = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM konsultasi INNER JOIN user ON konsultasi.id_user = user.id_user WHERE id_konsultasi = '$id_konsultasi'"));
   
   if (!$data_konsultasi) {
     header("Location: ".BASE_URL."/admin/konsultasi/index.php");
@@ -27,7 +27,7 @@
     exit;
   }
 
-  $nama_pasien = $data_konsultasi['nama_pasien'];
+  $nama_pasien = $data_konsultasi['nama_lengkap'];
   $jenis_kelamin = $data_konsultasi['jenis_kelamin'];
 
   $dokter = mysqli_query($koneksi, "SELECT * FROM dokter INNER JOIN spesialis ON dokter.id_spesialis = spesialis.id_spesialis ORDER BY nama_dokter ASC");
@@ -103,7 +103,7 @@
 <html lang="en">
 <head>
   <?php include_once '../include/head.php'; ?>
-  <title>Tambah Tanggapan - <?= $data_konsultasi['nama_pasien']; ?></title>
+  <title>Tambah Tanggapan - <?= $data_konsultasi['nama_lengkap']; ?></title>
 </head>
 
 <body>
@@ -128,7 +128,7 @@
             <div class="card-body">
               <div class="row mb-3">
                 <div class="col head-left">
-                  <h5 class="card-title fw-semibold">Tambah Tanggapan - <?= $data_konsultasi['nama_pasien']; ?></h5>
+                  <h5 class="card-title fw-semibold">Tambah Tanggapan - <?= $data_konsultasi['nama_lengkap']; ?></h5>
                 </div>
               </div>
               <div class="card">

@@ -15,7 +15,7 @@
 
   $id_konsultasi = $_GET['id_konsultasi'];
 
-  $data_konsultasi = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM konsultasi WHERE id_konsultasi = '$id_konsultasi'"));
+  $data_konsultasi = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM konsultasi INNER JOIN user ON konsultasi.id_user = user.id_user WHERE id_konsultasi = '$id_konsultasi'"));
 
   if (!$data_konsultasi) {
     header("Location: ".BASE_URL."/admin/konsultasi/index.php");
@@ -34,7 +34,7 @@
 <html lang="en">
 <head>
   <?php include_once '../include/head.php'; ?>
-  <title>Tanggapan - <?= $data_konsultasi['nama_pasien']; ?></title>
+  <title>Tanggapan - <?= $data_konsultasi['nama_lengkap']; ?></title>
 </head>
 
 <body>
@@ -57,15 +57,15 @@
         <div class="container-fluid">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title fw-semibold">Tanggapan - <?= $data_konsultasi['nama_pasien']; ?></h5>
+              <h5 class="card-title fw-semibold">Tanggapan - <?= $data_konsultasi['nama_lengkap']; ?></h5>
               <div class="card">
                 <div class="card-body">
                   <h5>Data Pasien</h5>
                   <div class="card">
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item"><h6>Nama Pasien:</h6> <?= $data_konsultasi['nama_pasien']; ?></li>
-                      <li class="list-group-item"><h6>No. WhatsApp Pasien:</h6> <a class="btn btn-success" target="_blank" href="https://wa.me/<?= $data_konsultasi['no_wa_pasien']; ?>"><i class="ti ti-brand-whatsapp"></i>+<?= $data_konsultasi['no_wa_pasien']; ?></a></li>
-                      <li class="list-group-item"><h6>Alamat Pasien:</h6> <?= $data_konsultasi['alamat_pasien']; ?></li>
+                      <li class="list-group-item"><h6>Nama Pasien:</h6> <?= $data_konsultasi['nama_lengkap']; ?></li>
+                      <li class="list-group-item"><h6>No. WhatsApp Pasien:</h6> <a class="btn btn-success" target="_blank" href="https://wa.me/<?= $data_konsultasi['no_whatsapp']; ?>"><i class="ti ti-brand-whatsapp"></i>+<?= $data_konsultasi['no_whatsapp']; ?></a></li>
+                      <li class="list-group-item"><h6>Alamat Pasien:</h6> <?= $data_konsultasi['alamat']; ?></li>
                       <li class="list-group-item"><h6>Gejala Pasien:</h6> <?= $data_konsultasi['gejala_pasien']; ?></li>
                       <li class="list-group-item"><h6>Tanggal Daftar:</h6> <?= date("d-m-Y H:i", strtotime($data_konsultasi['tanggal_daftar'])); ?></li>
                       <li class="list-group-item"><h6>Status Konsultasi:</h6> <?= $data_konsultasi['status_konsultasi']; ?></li>

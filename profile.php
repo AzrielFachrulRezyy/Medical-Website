@@ -41,7 +41,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <table>
+            <table cellpadding="5">
               <tr>
                 <th>Username</th>
                 <td>:</td>
