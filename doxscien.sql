@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Jul 2023 pada 03.20
+-- Waktu pembuatan: 12 Jul 2023 pada 03.38
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.2.0
 
@@ -56,16 +56,9 @@ CREATE TABLE `konsultasi` (
   `id_konsultasi` int(11) NOT NULL,
   `gejala_pasien` text NOT NULL,
   `tanggal_daftar` datetime NOT NULL,
-  `status_konsultasi` enum('BELUM DITANGGAPI','SUDAH DITANGGAPI','SUDAH DIKONFIRMASI','SELESAI') NOT NULL,
+  `status_konsultasi` enum('BELUM DITANGGAPI','SUDAH DITANGGAPI','SUDAH DIKONFIRMASI','SELESAI','DIBATALKAN') NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `konsultasi`
---
-
-INSERT INTO `konsultasi` (`id_konsultasi`, `gejala_pasien`, `tanggal_daftar`, `status_konsultasi`, `id_user`) VALUES
-(1, 'pusing', '2023-07-11 08:17:00', 'BELUM DITANGGAPI', 5);
 
 -- --------------------------------------------------------
 
@@ -168,7 +161,38 @@ INSERT INTO `riwayat` (`id_riwayat`, `isi_riwayat`, `tanggal_riwayat`, `id_user`
 (33, 'User Berhasil logout!', '2023-07-11 07:09:52', 1),
 (34, 'User Berhasil login!', '2023-07-11 07:37:07', 5),
 (35, 'Konsultasi Andri Firman Saputra Berhasil ditambahkan!', '2023-07-11 08:17:43', 5),
-(36, 'User Berhasil logout!', '2023-07-11 08:20:10', 5);
+(36, 'User Berhasil logout!', '2023-07-11 08:20:10', 5),
+(37, 'User Berhasil login!', '2023-07-11 08:26:18', 5),
+(38, 'User Berhasil logout!', '2023-07-11 10:00:03', 7),
+(39, 'User Berhasil login!', '2023-07-11 10:00:09', 5),
+(40, 'User Berhasil logout!', '2023-07-11 10:20:46', 5),
+(41, 'User Berhasil login!', '2023-07-11 10:21:00', 5),
+(42, 'User Berhasil login!', '2023-07-11 16:25:59', 5),
+(43, 'User Berhasil login!', '2023-07-11 16:36:05', 5),
+(44, 'User Berhasil login!', '2023-07-12 06:55:26', 5),
+(45, 'User Berhasil logout!', '2023-07-12 07:05:48', 5),
+(46, 'User Berhasil login!', '2023-07-12 07:06:10', 1),
+(47, 'User Berhasil logout!', '2023-07-12 07:07:45', 1),
+(48, 'User Berhasil login!', '2023-07-12 07:07:52', 5),
+(49, 'Konsultasi Andri Firman Saputra telah dibatalkan!', '2023-07-12 07:23:19', 5),
+(50, 'Konsultasi Andri Firman Saputra Berhasil ditambahkan!', '2023-07-12 07:27:59', 5),
+(51, 'User Berhasil logout!', '2023-07-12 07:31:19', 5),
+(52, 'User Berhasil login!', '2023-07-12 07:31:26', 1),
+(53, 'User Berhasil logout!', '2023-07-12 07:32:09', 1),
+(54, 'User Berhasil login!', '2023-07-12 07:32:19', 5),
+(55, 'Konsultasi Andri Firman Saputra Berhasil ditambahkan!', '2023-07-12 08:00:53', 5),
+(56, 'Konsultasi Andri Firman Saputra Berhasil ditambahkan!', '2023-07-12 08:00:58', 5),
+(57, 'Konsultasi Andri Firman Saputra Berhasil ditambahkan!', '2023-07-12 08:02:36', 5),
+(58, 'Konsultasi Andri Firman Saputra Berhasil diubah!', '2023-07-12 08:02:40', 5),
+(59, 'Konsultasi Andri Firman Saputra telah dibatalkan oleh pengguna!', '2023-07-12 08:02:46', 5),
+(60, 'Konsultasi Andri Firman Saputra Berhasil ditambahkan!', '2023-07-12 08:04:42', 5),
+(61, 'User Berhasil logout!', '2023-07-12 08:04:45', 5),
+(62, 'User Berhasil login!', '2023-07-12 08:04:52', 1),
+(63, 'User Berhasil logout!', '2023-07-12 08:14:11', 1),
+(64, 'User Berhasil login!', '2023-07-12 08:14:17', 1),
+(65, 'Tanggapan Andri Firman Saputra Berhasil ditambahkan!', '2023-07-12 08:34:20', 1),
+(66, 'Konsultasi  sudah dikonfirmasi!', '2023-07-12 08:34:32', 1),
+(67, 'Konsultasi  Selesai!', '2023-07-12 08:34:55', 1);
 
 -- --------------------------------------------------------
 
@@ -207,16 +231,6 @@ CREATE TABLE `tanggapan` (
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data untuk tabel `tanggapan`
---
-
-INSERT INTO `tanggapan` (`id_tanggapan`, `id_konsultasi`, `id_dokter`, `tanggal_konsultasi`, `keterangan`, `id_user`) VALUES
-(1, 1, 11, '2023-06-01 16:17:14', 'Terima kasih atas konsultasinya', 1),
-(2, 2, 12, '2023-06-16 16:20:21', 'Anda akan mendapatkan resep obat', 1),
-(3, 3, 13, '2023-06-12 16:20:21', 'Silakan melakukan pemeriksaan lanjutan', 1),
-(12, 7, 12, '2023-06-11 22:10:00', 'Selamat sore, Bapak Azriel, kami dari Doxscien. Bapak telah kami jadwalkan konsultasi dengan dokter Dr. Jane Smith pada waktu berikut: 11-06-2023, 22:10', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -239,8 +253,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `nama_lengkap`, `jenis_kelamin`, `no_whatsapp`, `alamat`, `role`) VALUES
-(1, 'admin', '$2y$10$uhFanjJHWe6AYEkdDGbsie91JzMScS0IkCExvR5E4d3Eqcyk97N2K', 'Admin', 'L', '08123456789', 'Admin', 'administrator'),
-(5, 'andri123', '$2y$10$C08miaIh.YM.T8JmdknJHO/FnzqSWQgHAUmUFXCNFFaB3vPo0geo.', 'Andri Firman Saputra', 'L', '6287808675313', 'Jl. AMD Babakan Pocis', 'pasien');
+(1, 'admin', '$2y$10$uhFanjJHWe6AYEkdDGbsie91JzMScS0IkCExvR5E4d3Eqcyk97N2K', 'Admin', 'L', '08123456789', 'Admin', 'administrator');
 
 --
 -- Indexes for dumped tables
@@ -315,7 +328,7 @@ ALTER TABLE `dokter`
 -- AUTO_INCREMENT untuk tabel `konsultasi`
 --
 ALTER TABLE `konsultasi`
-  MODIFY `id_konsultasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_konsultasi` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `obat`
@@ -333,7 +346,7 @@ ALTER TABLE `penyakit`
 -- AUTO_INCREMENT untuk tabel `riwayat`
 --
 ALTER TABLE `riwayat`
-  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT untuk tabel `spesialis`
@@ -345,7 +358,7 @@ ALTER TABLE `spesialis`
 -- AUTO_INCREMENT untuk tabel `tanggapan`
 --
 ALTER TABLE `tanggapan`
-  MODIFY `id_tanggapan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_tanggapan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
